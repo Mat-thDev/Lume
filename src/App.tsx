@@ -1,50 +1,29 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import GeneralContainer from "./components/General/GeneralContainer";
+import LumeHeader from "./components/Lume/Header";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
-
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+    <div className="w-screen h-screen bg-[var(--c-background)] text-[var(--c-primary)] grid grid-rows-[64px_1fr] grid-cols-[72px_1fr] theme-light">
 
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+      <LumeHeader />
 
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
+      <aside className="row-start-2 col-start-1 w-full h-full flex flex-col items-center py-4 bg-[var(--c-surface)]">
+        <div className="w-10 h-10 bg-[var(--c-primary)] rounded-full flex items-center justify-center mb-6">
+          ❤️
+        </div>
+      </aside>
+
+      {/* Conteúdo principal */}
+      <main id="lumecontent" className="absolute z-10 left-16 top-12 right-0 bottom-0 h-[calc(100vh - 4rem)] p-4">
+        <GeneralContainer customStyle="row-start-2 col-start-2 p-6 overflow-auto bg-[var(--c-accent)] border border-[var(--c-border)] rounded-xl shadow-lg">
+          <h1 className="text-3xl font-semibold mb-4">Bem-vindo de volta!</h1>
+          <p className="text-[var(--c-secundary)]">
+            Aqui você pode acessar suas notas, criar novas ideias e organizar tudo de forma minimalista.
+          </p>
+        </GeneralContainer>
+      </main>
+    </div>
   );
 }
 
