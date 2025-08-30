@@ -7,7 +7,7 @@ const LumeSidebar = () => {
   const { activeRoute } = useRoutes();
 
   return (
-    <aside className="w-16 h-full flex flex-col justify-end items-center py-6 bg-[var(--c-surface)]">
+    <aside className="w-14 h-full flex flex-col justify-end items-center py-6 bg-[var(--c-surface)]">
       <div className="flex flex-col gap-4">
         <LumeSidebarItem icon={Home} label="Início" route="Home" active={activeRoute() === "Home"} />
         <LumeSidebarItem icon={Notebook} label="Notas" route="Notes" active={activeRoute() === "Notes"} />

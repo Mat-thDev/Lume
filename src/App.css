@@ -48,12 +48,12 @@
 
   /* OLED Mode */
   --color-oled-background: #000000;       /* preto absoluto */
-  --color-oled-surface: #1c1a33;          /* cards mais escuros */
+  --color-oled-surface: #101013;          /* cards mais escuros */
   --color-oled-primary: #dcd6ff;          /* texto principal */
   --color-oled-secondary: #9a91c9;        /* texto secundário */
   --color-oled-accent: #5f2ea6;           /* roxo escuro */
   --color-oled-accentHover: #7a46d1;      /* roxo de destaque */
-  --color-oled-border: #2e2b4b;           /* bordas discretas */
+  --color-oled-border: #222329;           /* bordas discretas */
   --color-oled-muted: #6c6690;            /* texto desativado */
   --color-oled-info: #60a5fa;             /* azul */
   --color-oled-success: #34d399;          /* verde */
