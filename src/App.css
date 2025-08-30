@@ -13,84 +13,56 @@
   --c-info: var(--color-dark-info);
   --c-success: var(--color-dark-success);
   --c-warning: var(--color-dark-warning);
+  --shadow-inset-color: #121026b3;
 }
+
 
 @theme inline {
   /* Dark Mode */
-  --color-dark-background: #1a1a2e;
-  /* Azul escuro acinzentado para fundo */
-  --color-dark-primary: #e6e6ff;
-  /* Branco suave com toque roxo para texto */
-  --color-dark-secondary: #a3a3d6;
-  /* Cinza-roxo claro para texto secundário */
-  --color-dark-surface: #2a2a4a;
-  /* Superfície mais clara que o fundo */
-  --color-dark-accent: #7c3aed;
-  /* Roxo vibrante */
-  --color-dark-accentHover: #9f67fa;
-  /* Roxo mais claro para hover */
-  --color-dark-border: #4b4b6b;
-  /* Borda sutil roxa-acinzentada */
-  --color-dark-muted: #6b6b8a;
-  /* Texto apagado para elementos menos importantes */
-  --color-dark-info: #3b82f6;
-  /* Azul para informações */
-  --color-dark-success: #10b981;
-  /* Verde esmeralda para sucesso */
-  --color-dark-warning: #f59e0b;
-  /* Amarelo-âmbar para avisos */
+  --color-dark-background: #121026;       /* fundo mais profundo */
+  --color-dark-surface: #1f1b33;          /* cards, menus */
+  --color-dark-primary: #e0dbff;          /* texto principal */
+  --color-dark-secondary: #b5b0e0;        /* texto secundário */
+  --color-dark-accent: #5f2ea6;           /* roxo escuro */
+  --color-dark-accentHover: #7a46d1;      /* roxo de destaque */
+  --color-dark-border: #3c3553;           /* bordas sutis */
+  --color-dark-muted: #7c78a1;            /* texto desativado / placeholders */
+  --color-dark-info: #4f8fff;             /* azul para informações */
+  --color-dark-success: #2ebd91;          /* verde agradável */
+  --color-dark-warning: #f2a500;          /* amarelo/laranja */
+  --color-dark-error: #f05252;            /* vermelho */
 
   /* Light Mode */
-  --color-light-background: #ffffff;
-  /* Fundo branco com toque roxo */
-  --color-light-primary: #1a202c;
-  /* Azul escuro quase preto para texto */
-  --color-light-secondary: #2c2e31;
-  /* Cinza-azulado para texto secundário */
-  --color-light-surface: #ffffff;
-  /* Superfície clara com tom roxo */
-  --color-light-accent: #8e32f3;
-  /* Mesmo roxo do tema escuro para consistência */
-  --color-light-accentHover: #39076f;
-  /* Mesmo hover para consistência */
-  --color-light-border: #d1d1e6;
-  /* Borda clara com toque roxo */
-  --color-light-muted: #8b8ba3;
-  /* Cinza-roxo suave para texto apagado */
-  --color-light-info: #2563eb;
-  /* Azul mais escuro para informações */
-  --color-light-success: #059669;
-  /* Verde mais escuro para sucesso */
-  --color-light-warning: #d97706;
-  /* Laranja-âmbar para avisos */
+  --color-light-background: #f5f3ff;      /* fundo suave */
+  --color-light-surface: #ffffff;         /* cards */
+  --color-light-primary: #1c1b2e;         /* texto principal */
+  --color-light-secondary: #55507a;       /* texto secundário */
+  --color-light-accent: #5f2ea6;          /* roxo escuro */
+  --color-light-accentHover: #7a46d1;     /* roxo mais vibrante */
+  --color-light-border: #d6d1ed;          /* bordas sutis */
+  --color-light-muted: #a09ac1;           /* texto desativado / placeholders */
+  --color-light-info: #2563eb;            /* azul padrão */
+  --color-light-success: #059669;         /* verde */
+  --color-light-warning: #d97706;         /* amarelo/laranja */
+  --color-light-error: #ef4444;           /* vermelho */
 
   /* OLED Mode */
-  --color-oled-background: #0a0a14;
-  /* Preto profundo para OLED */
-  --color-oled-primary: #d4d4ff;
-  /* Branco com toque roxo para texto */
-  --color-oled-secondary: #8a8ac2;
-  /* Cinza-roxo para texto secundário */
-  --color-oled-surface: #1e1e38;
-  /* Superfície quase preta com tom roxo */
-  --color-oled-accent: #7c3aed;
-  /* Mesmo roxo para consistência */
-  --color-oled-accentHover: #9f67fa;
-  /* Mesmo hover para consistência */
-  --color-oled-border: #3a3a5a;
-  /* Borda escura com toque roxo */
-  --color-oled-muted: #5a5a7a;
-  /* Texto apagado com tom roxo */
-  --color-oled-info: #60a5fa;
-  /* Azul claro para informações */
-  --color-oled-success: #34d399;
-  /* Verde vibrante para sucesso */
-  --color-oled-warning: #fbbf24;
-  /* Amarelo brilhante para avisos */
+  --color-oled-background: #000000;       /* preto absoluto */
+  --color-oled-surface: #1c1a33;          /* cards mais escuros */
+  --color-oled-primary: #dcd6ff;          /* texto principal */
+  --color-oled-secondary: #9a91c9;        /* texto secundário */
+  --color-oled-accent: #5f2ea6;           /* roxo escuro */
+  --color-oled-accentHover: #7a46d1;      /* roxo de destaque */
+  --color-oled-border: #2e2b4b;           /* bordas discretas */
+  --color-oled-muted: #6c6690;            /* texto desativado */
+  --color-oled-info: #60a5fa;             /* azul */
+  --color-oled-success: #34d399;          /* verde */
+  --color-oled-warning: #fbbf24;          /* amarelo */
+  --color-oled-error: #f87171;            /* vermelho */
 }
 
 /* Temas */
-.theme-dark {
+#lumiapp[data-theme="dark"] {
   --c-background: var(--color-dark-background);
   --c-primary: var(--color-dark-primary);
   --c-secondary: var(--color-dark-secondary);
@@ -102,9 +74,10 @@
   --c-info: var(--color-dark-info);
   --c-success: var(--color-dark-success);
   --c-warning: var(--color-dark-warning);
+  --shadow-inset-color: #121026b3;
 }
 
-.theme-light {
+#lumiapp[data-theme="light"] {
   --c-background: var(--color-light-background);
   --c-primary: var(--color-light-primary);
   --c-secondary: var(--color-light-secondary);
@@ -116,9 +89,10 @@
   --c-info: var(--color-light-info);
   --c-success: var(--color-light-success);
   --c-warning: var(--color-light-warning);
+  --shadow-inset-color: #ffffff3b;
 }
 
-.theme-oled {
+#lumiapp[data-theme="oled"] {
   --c-background: var(--color-oled-background);
   --c-primary: var(--color-oled-primary);
   --c-secondary: var(--color-oled-secondary);
@@ -130,24 +104,12 @@
   --c-info: var(--color-oled-info);
   --c-success: var(--color-oled-success);
   --c-warning: var(--color-oled-warning);
+  --shadow-inset-color: #0000003b;
 }
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-}
-
-#lumecontent::before {
-  z-index: 1;
-  content: "";
-  position: fixed;
-  left: 4rem;
-  top: 3rem;
-  right: calc(-1 * 3rem);
-  bottom: calc(-1 * 4rem);
-  border-radius: 1.25rem;
-  box-shadow: 1px 1px 15px #0003 inset, inset 1px 1px 1px #ffffff3b;
-  pointer-events: none;
 }
 
 ::-webkit-scrollbar {

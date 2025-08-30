@@ -1,16 +1,11 @@
 import clsx from "clsx";
+import { GeneralContainerProps } from "../../types";
 
-type GeneralContainerProps = {
-  children: React.ReactNode;
-  customStyle?: string;
-}
-
-
-const GeneralContainer = ({ children, customStyle }: GeneralContainerProps) => {
+const GeneralContainer = ({ children, id, theme, customStyle }: GeneralContainerProps) => {
   return (
-    <main className={clsx("", customStyle)}>
+    <div id={id} className={clsx("", customStyle)} data-theme={theme ?? "dark"}>
       {children}
-    </main>
+    </div>
   )
 }
 
