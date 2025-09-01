@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai"
 import { routes } from "../types"
-import { LumeRoute } from "../storage/storage";
+import { LumeRoute } from "../storage/atom";
 
 const useRoutes = () => {
 

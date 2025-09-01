@@ -11,10 +11,11 @@ import { routes } from "./types";
 import LumeSettings from "./components/Routes/Settings";
 import useSettings from "./hooks/useSettings";
 import LumePreloader from "./components/Lume/Preloader";
+import LumeEditor from "./components/Routes/Editor/page";
 
 const RoutesPage = {
   "Home": LumeHome,
-  "Notes": LumeHome,
+  "Editor": LumeEditor,
   "Settings": LumeSettings,
 } as Record<routes, ComponentType>
 
@@ -23,7 +24,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const { appTheme } = useSettings();
   const { activeRoute } = useRoutes();
-  const CurrentPage  = RoutesPage[activeRoute()];
+  const CurrentPage = RoutesPage[activeRoute()];
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -45,9 +46,8 @@ function App() {
 
       <div className="flex flex-1 overflow-hidden">
         <LumeSidebar />
-
-        <main className="flex-1 h-full overflow-y-auto p-10 relative border-l-1 border-t-1 border-[var(--c-border)] rounded-tl-xl bg-[var(--c-background)]">
-          <CurrentPage  />
+        <main className="flex-1 h-full overflow-auto relative border-l border-t border-[var(--c-border)] rounded-tl-xl bg-[var(--c-background)]">
+          <CurrentPage />
         </main>
       </div>
     </GeneralContainer>

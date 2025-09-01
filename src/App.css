@@ -19,46 +19,46 @@
 
 @theme inline {
   /* Dark Mode */
-  --color-dark-background: #121026;       /* fundo mais profundo */
-  --color-dark-surface: #1f1b33;          /* cards, menus */
-  --color-dark-primary: #e0dbff;          /* texto principal */
-  --color-dark-secondary: #b5b0e0;        /* texto secundário */
-  --color-dark-accent: #5f2ea6;           /* roxo escuro */
-  --color-dark-accentHover: #7a46d1;      /* roxo de destaque */
-  --color-dark-border: #3c3553;           /* bordas sutis */
-  --color-dark-muted: #7c78a1;            /* texto desativado / placeholders */
-  --color-dark-info: #4f8fff;             /* azul para informações */
-  --color-dark-success: #2ebd91;          /* verde agradável */
-  --color-dark-warning: #f2a500;          /* amarelo/laranja */
-  --color-dark-error: #f05252;            /* vermelho */
+  --color-dark-background: #0f0e17;
+  --color-dark-surface: #1a1826;
+  --color-dark-primary: #e4e1f2;
+  --color-dark-secondary: #a6a1bf;
+  --color-dark-accent: #7c5cff;
+  --color-dark-accentHover: #9a7dff;
+  --color-dark-border: #2a2738;
+  --color-dark-muted: #6e6a85;
+  --color-dark-info: #3d7bff;
+  --color-dark-success: #3cbf88;
+  --color-dark-warning: #e6a23c;
+  --color-dark-error: #e05b65;
 
   /* Light Mode */
-  --color-light-background: #f5f3ff;      /* fundo suave */
-  --color-light-surface: #ffffff;         /* cards */
-  --color-light-primary: #1c1b2e;         /* texto principal */
-  --color-light-secondary: #55507a;       /* texto secundário */
-  --color-light-accent: #5f2ea6;          /* roxo escuro */
-  --color-light-accentHover: #7a46d1;     /* roxo mais vibrante */
-  --color-light-border: #d6d1ed;          /* bordas sutis */
-  --color-light-muted: #a09ac1;           /* texto desativado / placeholders */
-  --color-light-info: #2563eb;            /* azul padrão */
-  --color-light-success: #059669;         /* verde */
-  --color-light-warning: #d97706;         /* amarelo/laranja */
-  --color-light-error: #ef4444;           /* vermelho */
+  --color-light-background: #f6f5f9;
+  --color-light-surface: #ffffff;
+  --color-light-primary: #1d1b29;
+  --color-light-secondary: #5c5870;
+  --color-light-accent: #7c5cff;
+  --color-light-accentHover: #9a7dff;
+  --color-light-border: #dcd8eb;
+  --color-light-muted: #9d98b5;
+  --color-light-info: #2563eb;
+  --color-light-success: #059669;
+  --color-light-warning: #d97706;
+  --color-light-error: #dc2626;
 
   /* OLED Mode */
-  --color-oled-background: #000000;       /* preto absoluto */
-  --color-oled-surface: #101013;          /* cards mais escuros */
-  --color-oled-primary: #dcd6ff;          /* texto principal */
-  --color-oled-secondary: #9a91c9;        /* texto secundário */
-  --color-oled-accent: #5f2ea6;           /* roxo escuro */
-  --color-oled-accentHover: #7a46d1;      /* roxo de destaque */
-  --color-oled-border: #222329;           /* bordas discretas */
-  --color-oled-muted: #6c6690;            /* texto desativado */
-  --color-oled-info: #60a5fa;             /* azul */
-  --color-oled-success: #34d399;          /* verde */
-  --color-oled-warning: #fbbf24;          /* amarelo */
-  --color-oled-error: #f87171;            /* vermelho */
+  --color-oled-background: #000000;
+  --color-oled-surface: #111015;
+  --color-oled-primary: #ebe9f7;
+  --color-oled-secondary: #928da8;
+  --color-oled-accent: #7c5cff;
+  --color-oled-accentHover: #9a7dff;
+  --color-oled-border: #1f1d26;
+  --color-oled-muted: #6d6980;
+  --color-oled-info: #3d7bff;
+  --color-oled-success: #34d399;
+  --color-oled-warning: #fbbf24;
+  --color-oled-error: #f87171;
 }
 
 /* Temas */
@@ -128,4 +128,22 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c-accentHover);
+}
+
+.ͼ2 .cm-gutters {
+  background-color: var(--c-surface);
+  border: var(--c-border);
+  color: var(--c-primary);
+}
+
+.ͼ2 .cm-activeLineGutter {
+  background-color: var(--c-accent) !important;
+}
+
+.cm-activeLine {
+  background-color: var(--c-surface) !important;
+}
+
+#lumeEditor[data-show-numbers="false"] .cm-gutters {
+  display: none !important;
 }

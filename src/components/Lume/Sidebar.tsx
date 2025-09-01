@@ -10,7 +10,7 @@ const LumeSidebar = () => {
     <aside className="w-14 h-full flex flex-col justify-end items-center py-6 bg-[var(--c-surface)]">
       <div className="flex flex-col gap-4">
         <LumeSidebarItem icon={Home} label="Início" route="Home" active={activeRoute() === "Home"} />
-        <LumeSidebarItem icon={Notebook} label="Notas" route="Notes" active={activeRoute() === "Notes"} />
+        <LumeSidebarItem icon={Notebook} label="Notas" route="Editor" active={activeRoute() === "Editor"} />
         <LumeSidebarItem icon={Settings} label="Configurações" route="Settings" active={activeRoute() === "Settings"} />
         {/* <LumeSidebarUserIcon username={"Misaki"} /> */}
       </div>
@@ -50,7 +50,7 @@ const LumeSidebarItem = ({ icon, label, route, active }: SidebarItemProps) => {
       <Icon className="w-5 h-5" />
       {/* Tooltip */}
       <span
-        className="absolute left-14 px-2 py-1 rounded-md bg-[var(--c-surface)] text-sm text-[var(--c-primary)] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg z-99"
+        className="absolute left-14 px-2 py-1 rounded-md bg-[var(--c-surface)] text-sm text-[var(--c-primary)] hidden opacity-0 group-hover:opacity-100 group-hover:block transition whitespace-nowrap shadow-lg z-99"
       >
         {label}
       </span>

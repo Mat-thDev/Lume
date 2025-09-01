@@ -1,7 +1,7 @@
 "use client"
 
 import { useAtom } from "jotai"
-import { LumeSettings } from "../storage/storage"
+import { LumeSettings } from "../storage/atom"
 import { lumeSettings } from "../types"
 
 export const defaultSettings: lumeSettings = {
@@ -10,7 +10,7 @@ export const defaultSettings: lumeSettings = {
   },
   editor: {
     autoSave: false,
-    autoSaveInterval: 0,
+    autoSaveInterval: 10,
     showLineNumbers: false
   },
   general: {

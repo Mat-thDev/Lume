@@ -3,11 +3,16 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useSettings from "../../../hooks/useSettings";
-import { themes } from "../../../types";
+import { lumeSettings  } from "../../../types";
+import CheckboxRow from "../../General/CheckboxRow";
+import ThemePreview from "../../General/ThemePreview";
+import SettingsCard from "../../General/SettingsCard";
+
+
 
 const LumeSettings = () => {
-  const { fetchSettings, setSettings, resetSettings } = useSettings();
-  const [settings, setLocalSettings] = useState<any>(null);
+  const { fetchSettings, setSettings } = useSettings();
+  const [settings, setLocalSettings] = useState<lumeSettings | null>(null);
 
   useEffect(() => {
     const s = fetchSettings();
@@ -15,14 +20,6 @@ const LumeSettings = () => {
   }, [fetchSettings]);
 
   if (!settings) return null;
-
-  const handleReset = () => {
-    resetSettings();
-  };
-
-  // const handleSave = () => {
-  //   console.log("Salvar em backend/Tauri futuramente");
-  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
@@ -32,113 +29,91 @@ const LumeSettings = () => {
         transition={{ duration: 0.5 }}
         className="max-w-2xl w-full space-y-6"
       >
-        <h1 className="text-3xl font-bold text-center mb-8">
+        <h1 className="text-3xl font-bold text-center mb-8 text-[var(--c-text)]">
           Configurações
         </h1>
 
         <AnimatePresence>
           {/* Aparência */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="bg-[var(--c-surface)] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span>🎨</span> Aparência
-            </h2>
-            <div className="flex items-center justify-between">
-              <label htmlFor="themeMode" className="text-base">
+          <SettingsCard title="Aparência" icon="🎨">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="themeMode" className="text-base font-medium text-[var(--c-text)]">
                 Tema
               </label>
-              <select
-                id="themeMode"
-                value={settings.appearance.themeMode}
-                onChange={(e) => setSettings("appearance", "themeMode", e.target.value as themes)}
-                className="p-2 rounded-md bg-[var(--c-background)] border border-[var(--c-border)] focus:outline-none focus:ring-2 focus:ring-[var(--c-accent)] transition-all"
-              >
-                <option value="light">Claro</option>
-                <option value="dark">Escuro</option>
-                <option value="oled">OLED</option>
-              </select>
-            </div>
-          </motion.div>
+              <span className="text-sm text-[var(--c-secondary)]">
+                Selecione seu tema favorito para o Lume.
+              </span>
 
-          {/* Editor */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="bg-[var(--c-surface)] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span>✍️</span> Editor
-            </h2>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-base">Salvar automaticamente</span>
-                <input
-                  type="checkbox"
-                  checked={settings.editor.autoSave}
-                  onChange={(e) => setSettings("editor", "autoSave", e.target.checked)}
-                  className="h-5 w-5 accent-[var(--c-accent)] rounded focus:ring-[var(--c-accent)]"
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center mt-4">
+                <ThemePreview
+                  label={"Tema Claro"}
+                  theme={"light"}
+                  selected={settings.appearance.themeMode === "light"}
+                  onSelect={() =>
+                    setSettings("appearance", "themeMode", "light")
+                  }
+                />
+                <ThemePreview
+                  label={"Tema Escuro"}
+                  theme={"dark"}
+                  selected={settings.appearance.themeMode === "dark"}
+                  onSelect={() =>
+                    setSettings("appearance", "themeMode", "dark")
+                  }
+                />
+                <ThemePreview
+                  label={"Tema Oled"}
+                  theme={"oled"}
+                  selected={settings.appearance.themeMode === "oled"}
+                  onSelect={() =>
+                    setSettings("appearance", "themeMode", "oled")
+                  }
                 />
               </div>
+            </div>
+          </SettingsCard>
+
+          {/* Editor */}
+          <SettingsCard title="Editor" icon="✍️" delay={0.1}>
+            <div className="space-y-4">
+              <CheckboxRow
+                label="Salvar automaticamente"
+                checked={settings.editor.autoSave}
+                onChange={(v) => setSettings("editor", "autoSave", v)}
+              />
+
               <div className="flex items-center justify-between">
-                <span className="text-base text-[var(--c-text)]">Intervalo de salvamento (segundos)</span>
+                <span className="text-base text-[var(--c-text)]">
+                  Intervalo de salvamento (segundos)
+                </span>
                 <input
                   type="number"
-                  min="5"
+                  min="10"
                   value={settings.editor.autoSaveInterval}
-                  onChange={(e) => setSettings("editor", "autoSaveInterval", Number(e.target.value))}
+                  onChange={(e) =>
+                    setSettings("editor", "autoSaveInterval", Number(e.target.value))
+                  }
                   className="px-3 py-2 w-24 rounded-md bg-[var(--c-background)] border border-[var(--c-border)] text-[var(--c-text)] focus:outline-none focus:ring-2 focus:ring-[var(--c-accent)] transition-all"
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-base text-[var(--c-text)]">Mostrar números de linha</span>
-                <input
-                  type="checkbox"
-                  checked={settings.editor.showLineNumbers}
-                  onChange={(e) => setSettings("editor", "showLineNumbers", e.target.checked)}
-                  className="h-5 w-5 accent-[var(--c-accent)] rounded focus:ring-[var(--c-accent)]"
-                />
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Geral */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="bg-[var(--c-surface)] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <h2 className="text-xl font-semibold text-[var(--c-text)] mb-4 flex items-center gap-2">
-              <span>⚙️</span> Geral
-            </h2>
-            <div className="flex items-center justify-between">
-              <span className="text-base text-[var(--c-text)]">Iniciar na inicialização</span>
-              <input
-                type="checkbox"
-                checked={settings.general.startOnBoot}
-                onChange={(e) => setSettings("general", "startOnBoot", e.target.checked)}
-                className="h-5 w-5 accent-[var(--c-accent)] rounded focus:ring-[var(--c-accent)]"
+              <CheckboxRow
+                label="Mostrar números de linha"
+                checked={settings.editor.showLineNumbers}
+                onChange={(v) => setSettings("editor", "showLineNumbers", v)}
               />
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </SettingsCard>
 
-        <div className="flex justify-end gap-4 mt-6">
-          <button
-            onClick={handleReset}
-            className="px-4 py-2 bg-[var(--c-surface)] text-[var(--c-text)] rounded-lg hover:bg-[var(--c-accent)] hover:text-white transition-all"
-          >
-            Resetar
-          </button>
-        </div>
+          {/* Geral */}
+          <SettingsCard title="Geral" icon="⚙️" delay={0.2}>
+            <CheckboxRow
+              label="Iniciar na inicialização"
+              checked={settings.general.startOnBoot}
+              onChange={(v) => setSettings("general", "startOnBoot", v)}
+            />
+          </SettingsCard>
+        </AnimatePresence>
       </motion.div>
     </div>
   );

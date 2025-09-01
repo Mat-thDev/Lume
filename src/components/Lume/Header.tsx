@@ -22,7 +22,9 @@ const LumeHeader = () => {
       data-tauri-drag-region
       className="w-full h-12 flex items-center justify-between px-4 bg-[var(--c-surface)] shadow-md select-none"
     >
-      <span className="text-lg font-semibold tracking-widest">Lume</span>
+      <div className="">
+        <span className="text-lg font-semibold tracking-widest">Lume</span>
+      </div>
 
       {/* Botões da janela */}
       <div className="flex items-center gap-2">

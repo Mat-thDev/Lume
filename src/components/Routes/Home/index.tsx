@@ -1,6 +1,10 @@
+import useNest from "../../../hooks/useNest";
 
 
 const LumeHome = () => {
+
+  const { openNest } = useNest();
+
   return (
     <div className="max-w-4xl mx-auto flex flex-col items-center justify-center h-full text-center">
 
@@ -13,7 +17,7 @@ const LumeHome = () => {
         <button className="px-6 py-3 rounded-xl bg-[var(--c-accent)] text-white font-medium shadow-md hover:scale-105 transition">
           Nova Nota
         </button>
-        <button className="px-6 py-3 rounded-xl border border-[var(--c-border)] font-medium hover:bg-[var(--c-surface)] transition">
+        <button className="px-6 py-3 rounded-xl border border-[var(--c-border)] font-medium hover:bg-[var(--c-surface)] transition" onClick={() => openNest()}>
           Abrir Pasta
         </button>
       </div>
