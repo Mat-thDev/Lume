@@ -1,5 +1,5 @@
 import { open } from '@tauri-apps/plugin-dialog';
-import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
+import { create, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
 
 import { useAtom } from "jotai";
 import { LumeRoute, LumeState } from "../storage/atom";
@@ -36,6 +36,19 @@ const useFile = () => {
     setRoute("Editor");
   }
 
+  const newFile = async (fileName: string) => {
+    try {
+      const path = lumeState.nest?.path;
+      if(!path) return;
+
+      const finalPath = path + `/${fileName}`;
+      await create(finalPath);
+    } catch (err) {
+      console.error("Erro ao criar arquivo:", err);
+    }
+  };
+
+
   const fetchFocusedFile = () => lumeState.currentFile;
 
   const updateFileContent = (c: string) => {
@@ -69,6 +82,7 @@ const useFile = () => {
     openFile,
     fetchFocusedFile,
     updateFileContent,
+    newFile,
     closeFile,
     saveFile
   }

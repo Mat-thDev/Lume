@@ -3,14 +3,14 @@ import { readDir, readTextFile, mkdir } from '@tauri-apps/plugin-fs';
 import { join } from "@tauri-apps/api/path";
 
 import { Nest, NestFolder, Note } from '../types';
-import { useAtom } from 'jotai';
-import { LumeRoute, LumeSettings, LumeState } from '../storage/atom';
+import { useAtom, useSetAtom } from 'jotai';
+import { LumeRoute, LumeState } from '../storage/atom';
 
 
 const useNest = () => {
 
   const [lumeState, setLumeState] = useAtom(LumeState)
-  const [route, setRoute] = useAtom(LumeRoute);
+  const setRoute = useSetAtom(LumeRoute);
 
   const openNest = async () => {
     const folderPath = await open({

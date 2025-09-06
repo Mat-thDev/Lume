@@ -1,4 +1,4 @@
-import { watchImmediate } from '@tauri-apps/plugin-fs';
+import { UnwatchFn, watchImmediate } from '@tauri-apps/plugin-fs';
 import { useEffect } from 'react';
 import useNest from './useNest';
 
@@ -8,15 +8,27 @@ const useNestWatcher = (path: string) => {
   useEffect(() => {
     if (!path) return;
 
-    const watcher = watchImmediate(path, async (event) => {
-      console.log('[NestWatcher]', event);
-      loadNest(path);
-    }, { recursive: true });
+    let unwatch: UnwatchFn | null = null;
+
+    const setupWatcher = async () => {
+      unwatch = await watchImmediate(
+        path,
+        async (event) => {
+          console.log('[NestWatcher]', event);
+          loadNest(path);
+        },
+        { recursive: true }
+      );
+    };
+
+    setupWatcher();
 
     return () => {
-      watcher.then((unwatch) => unwatch());
+      if (unwatch) {
+        unwatch();
+      }
     };
-  }, [path]);
+  }, [path, loadNest]);
 };
 
 export default useNestWatcher;

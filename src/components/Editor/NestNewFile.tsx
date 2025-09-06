@@ -1,13 +1,32 @@
 import { FilePlus2 } from "lucide-react";
-import { useState } from "react";
-import useNest from "../../hooks/useNest";
+import { useEffect, useRef, useState } from "react";
+import useFile from "../../hooks/useFile";
 
+interface NestNewFileProps {
+  onCreated?: () => void;
+}
 
-const NestNewFile = () => {
+const NestNewFile = ({ onCreated }: NestNewFileProps) => {
 
-  const [folderName, setFolderName] = useState("");
+  const [fileName, setFileName] = useState("");
+  const { newFile } = useFile();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { newNestFolder } = useNest();
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const createFile = () => {
+    if (fileName.trim() === "") return cancelFile();
+    newFile(fileName.trim());
+    setFileName("");
+    onCreated?.();
+  };
+
+  const cancelFile = () => {
+    setFileName("");
+    onCreated?.();
+  };
 
   return (
     <div
@@ -17,9 +36,13 @@ const NestNewFile = () => {
       <div>
         <input
           className="w-40 h-6 border-2 border-[var(--c-accent)] rounded"
-          value={folderName}
-          onChange={(e) => setFolderName(e.currentTarget.value)}
-          onSubmit={() => newNestFolder(folderName)}
+          value={fileName}
+          onChange={(e) => setFileName(e.currentTarget.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") createFile();
+            if (e.key === "Escape") cancelFile();
+          }}
+          onBlur={createFile}
         />
       </div>
     </div>

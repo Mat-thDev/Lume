@@ -9,15 +9,17 @@ import { useAtomValue } from "jotai";
 import { EditorSidebarCollapsed } from "../../storage/atom";
 import useNest from "../../hooks/useNest";
 import useNestWatcher from "../../hooks/useNestWatcher";
+import NestNewFile from "./NestNewFile";
 
 const NestSidebar = ({ nest, onSelectFile }: NestSidebarProps) => {
   const collapsed = useAtomValue(EditorSidebarCollapsed);
   const { closeNest } = useNest();
   const [showNewFolderInput, setShowNewFolderInput] = useState(false);
+  const [showNewFileInput, setShowNewFileInput] = useState(false);
+
+  useNestWatcher(nest?.path ?? "");
 
   if (!nest) return null;
-
-  useNestWatcher(nest.path);
 
   return (
     <div className={`${collapsed ? "w-0" : "w-56"} border-r border-[var(--c-border)] bg-[var(--c-surface)] flex flex-col`}>
@@ -46,9 +48,14 @@ const NestSidebar = ({ nest, onSelectFile }: NestSidebarProps) => {
             <LumeNestFolder
               key={folder.id}
               folder={folder}
-              onSelectFile={onSelectFile}
+              onSelectFile={() => onSelectFile}
             />
           ))}
+
+
+          {showNewFileInput && (
+            <NestNewFile onCreated={() => setShowNewFileInput(false)} />
+          )}
 
           {nest.notes.map((note) => (
             <NestFile key={note.id} note={note} onSelect={() => onSelectFile(note)} />
@@ -64,6 +71,7 @@ const NestSidebar = ({ nest, onSelectFile }: NestSidebarProps) => {
           <button
             title="Novo arquivo"
             className="p-2 rounded hover:bg-[var(--c-accent)]/20 transition"
+            onClick={() => setShowNewFileInput(true)}
           >
             <FilePlus className="w-5 h-5" />
           </button>
